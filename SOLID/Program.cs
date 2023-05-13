@@ -1,7 +1,10 @@
 ﻿
+using SOLID.LiskovSubstutionPrinciple.WithLSP;
+using SOLID.LiskovSubstutionPrinciple.WithoutLSP;
 using SOLID.OpenClosedPrinciple.WithOCP;
 using SOLID.OpenClosedPrinciple.WithoutOCP;
 using SOLID.Single_Responsibility_Principle;
+using System;
 
 //Single responsibility prensibi sınıflarımızın iyi tanımlanmış tek bir sorumluluğu olması gerektiğini anlatmaktadır.
 #region Single Responsibility Principle
@@ -50,5 +53,27 @@ animalSoundWithOCP.MakeAnimalSoundWithOCP(cow);
 
 
 #endregion Open Closed Principle
+
+//bir sınıfın nesnelerinin, o sınıfın bir alt sınıfının nesneleriyle değiştirilebilir olması gerektiğini belirtir. Başka bir deyişle, bir üst sınıfın herhangi bir yöntemi, alt sınıflar tarafından değiştirilemez veya bozulamaz.
+#region Liskov Substitution Principle
+
+#region Without LSP
+//Orange nesnesi miras aldığı apple nesnesini override ederek değiştiriyor. Karmaşanın engellenmesi için miras alınan nesneyi değiştirmemesi gerekir.
+OrangeWithoutLSP orange = new OrangeWithoutLSP();
+Console.WriteLine(orange.GetColor());
+
+#endregion Without LSP
+
+#region With LSP
+//Orange ve apple sınıfları IFruit interface ini miras aldı. üst nesnenin işlevini değiştirmemiş olduk böylece.
+IFruitWithLSP fruit = new OrangeWithLSP();
+Console.WriteLine($"Color of Orange: {fruit.GetColor()}");
+fruit = new AppleWithLSP();
+Console.WriteLine($"Color of Apple: {fruit.GetColor()}");
+Console.ReadKey();
+
+#endregion With LSP
+
+#endregion Liskov Substitution Principle
 
 
