@@ -1,4 +1,6 @@
 ﻿
+using SOLID.InterfaceSegregationPrinciple.WithISP;
+using SOLID.InterfaceSegregationPrinciple.WithoutISP;
 using SOLID.LiskovSubstutionPrinciple.WithLSP;
 using SOLID.LiskovSubstutionPrinciple.WithoutLSP;
 using SOLID.OpenClosedPrinciple.WithOCP;
@@ -70,10 +72,28 @@ IFruitWithLSP fruit = new OrangeWithLSP();
 Console.WriteLine($"Color of Orange: {fruit.GetColor()}");
 fruit = new AppleWithLSP();
 Console.WriteLine($"Color of Apple: {fruit.GetColor()}");
-Console.ReadKey();
 
 #endregion With LSP
 
 #endregion Liskov Substitution Principle
+
+//Sorumlulukların hepsini tek bir arayüze toplamak yerine daha özelleştirilmiş birden fazla arayüz oluşturmayı tercih etmemizi söyleyen prensiptir.
+#region Interface Segregation Principle
+
+#region Without ISP
+//Bu örnekte kullanılmayan bir method implement edilmiş oldu. Böyle bir yapı okunabilirliği azaltır. Gerek duyulmayan metotları implement etmek zorunda kaldık ve bakımı zor bir hal almış oldu.
+BirdWithoutISP bird = new BirdWithoutISP();
+bird.bark();
+
+#endregion Without ISP
+
+#region With ISP
+//Bu şekilde havlama sınıfını kuşa implement etmemiş olduk. Gereksiz implementden kaçınmış olduk.
+BirdWithISP birdWithISP = new BirdWithISP();
+birdWithISP.fly();
+
+#endregion With ISP
+
+#endregion Interface Segregation Principle
 
 
